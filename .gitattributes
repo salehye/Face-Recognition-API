@@ -1,0 +1,26 @@
+# ============================================================
+# إعدادات Git Attributes
+# ============================================================
+
+# توحيد نهايات الأسطر (CRLF -> LF)
+* text=auto eol=lf
+
+# ملفات Python
+*.py text diff=python
+
+# ملفات Docker
+Dockerfile text
+docker-compose.yml text
+
+# ملفات الصور (ثنائية - لا يتم تغييرها)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+
+# ملفات Markdown
+*.md text diff=markdown
+
+# ملفات المتطلبات
+requirements.txt text

@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  face-recognition-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: face-recognition-api
+    restart: unless-stopped
+    ports:
+      - "${API_PORT:-8001}:8001"
+    environment:
+      - PORT=8001
+      - HOST=0.0.0.0
+    # استخدام CPU فقط (مثبت)
+    # إذا كان لديك GPU NVIDIA، يمكنك إضافة:
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8001/')"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+    # volumes اختياري: إذا أردت تخزين النماذج خارجياً
+    # volumes:
+    #   - insightface_models:/root/.insightface
+    networks:
+      - face-network
+
+networks:
+  face-network:
+    driver: bridge
+
+# volumes:
+#   insightface_models:
