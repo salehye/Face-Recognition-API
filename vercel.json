@@ -1,0 +1,8 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "functions": {
+    "api/**/*.py": {
+      "excludeFiles": "{test_images/**,test_client.py,venv/**,__pycache__/**,.env.example,docker-compose.yml,Dockerfile,.dockerignore,.gitattributes,.gitignore,*.md}"
+    }
+  }
+}
