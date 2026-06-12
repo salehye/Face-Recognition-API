@@ -86,6 +86,7 @@ COPY --from=builder /usr/local/bin /usr/local/bin
 COPY --from=builder /root/.insightface /root/.insightface
 
 # نسخ ملفات التطبيق
+COPY --chown=faceapi:faceapi app/ ./app/
 COPY --chown=faceapi:faceapi main.py .
 
 # التبديل إلى المستخدم غير الجذر
